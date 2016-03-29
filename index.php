@@ -2,6 +2,10 @@
 <!--
 DumphpDB is a easy way to save your working database. If you have a 
 -->
+<?php
+require_once 'dumphpdb.php';
+?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -11,18 +15,58 @@ DumphpDB is a easy way to save your working database. If you have a
                 background-color: #f3f3f3;
                 font-family: sans-serif;
             }
+
+            #save {
+                float: left;
+                width: 50%;
+            }
+
+            #update {
+                float: right;
+                width: 50%;                
+            }
+
         </style>
     </head>
     <body>
     <center>
-        <h1> DumphpDB </h1>
+        <h1 style="margin-bottom: 60px"> DumphpDB </h1>
     </center>
-    
-        <span style="margin-top: 50px"></span>
-        <p> Save your DB version. </p>
-        
-        <?php
-        // put your code here
-        ?>
-    </body>
+
+    <div id="save">
+
+        <form action="dumphpdb.php" method="POST">
+            <span style="margin-top: 50px"></span>
+            <p> Save your DB version. </p>
+            <br>
+            <label>Mysql User</label>
+            <input type="text" name="mysql_user">
+            <br>
+            <label>Password </label>
+            <input type="text" name="mysql_password">
+            <br>
+            <input type="submit" name="save">
+        </form>
+
+    </div>
+
+    <div id="update">
+        <form action="dumphpdb.php" method="POST">
+            <span style="margin-top: 50px"></span>
+            <p> Save your DB version. </p>
+            <br>
+            <label>Mysql User</label>
+            <input type="text" name="mysql_user">
+            <br>
+            <label>Password </label>
+            <input type="text" name="mysql_password">
+            <br>
+            <input type="submit" name="save">
+        </form>
+    </div>
+
+    <?php
+    // put your code here
+    ?>
+</body>
 </html>
