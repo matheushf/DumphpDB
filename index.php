@@ -20,6 +20,10 @@ require_once 'dumphpdb.php';
                 float: left;
                 width: 50%;
             }
+            
+            #save input {
+                
+            }
 
             #update {
                 float: right;
@@ -33,37 +37,40 @@ require_once 'dumphpdb.php';
         <h1 style="margin-bottom: 60px"> DumphpDB </h1>
     </center>
 
-    <div id="save">
+    <center>
+        <div id="save">
 
-        <form action="dumphpdb.php" method="POST">
-            <span style="margin-top: 50px"></span>
-            <p> Save your DB version. </p>
-            <br>
-            <label>Mysql User</label>
-            <input type="text" name="mysql_user">
-            <br>
-            <label>Password </label>
-            <input type="text" name="mysql_password">
-            <br>
-            <input type="submit" name="save">
-        </form>
+            <form action="dumphpdb.php" method="POST" name="">
+                <span style="margin-top: 50px"></span>
+                <p> Save your DB version. </p>
+                <br>
+                <label>Mysql User</label>
+                <input type="text" name="mysql_user">
+                <br>
+                <label>Password </label>
+                <input type="text" name="mysql_password">
+                <br>
+                <input type="submit" name="save" value="Save">
+            </form>
+        </div>
+    </center>        
 
-    </div>
-
-    <div id="update">
-        <form action="dumphpdb.php" method="POST">
-            <span style="margin-top: 50px"></span>
-            <p> Save your DB version. </p>
-            <br>
-            <label>Mysql User</label>
-            <input type="text" name="mysql_user">
-            <br>
-            <label>Password </label>
-            <input type="text" name="mysql_password">
-            <br>
-            <input type="submit" name="save">
-        </form>
-    </div>
+    <center>
+        <div id="update">
+            <form action="dumphpdb.php" method="POST">
+                <span style="margin-top: 50px"></span>
+                <p> Update your DB Version. </p>
+                <br>
+                <label>Mysql User</label>
+                <input type="text" name="mysql_user">
+                <br>
+                <label>Password </label>
+                <input type="text" name="mysql_password">
+                <br>
+                <input type="submit" name="save" value="Update">
+            </form>
+        </div>
+    </center>
 
     <?php
     // put your code here
