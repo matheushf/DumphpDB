@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <!--
-DumphpDB is a easy way to save your working database. If you have a 
+DumphpDB is a easy way to save your working database. 
+
+If you have are working on a new project, it means that, like always, your database is going to have a lot of versions, with the progress we make, we always find something we want to change. 
+
+So if you work in more than one place, or in a team, you probably use a git to save your work, and then pull the changes. 
+This plugin allows you to save your current database, and then upload it along with your current project's directory's, and then after pulling your commit, you just update the database, it is just two clicks in a single page, and it is it!
+
+I hope you enjoy!
 -->
 <?php
 require_once 'dumphpdb.php';
@@ -9,71 +16,50 @@ require_once 'dumphpdb.php';
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>DumphpDB</title>
-        <style>
-            body {
-                background-color: #f3f3f3;
-                font-family: sans-serif;
-            }
-
-            #save {
-                float: left;
-                width: 50%;
-            }
-            
-            #save input {
-                
-            }
-
-            #update {
-                float: right;
-                width: 50%;                
-            }
-
-        </style>
+        <title> DumphpDB </title>
+        <link rel="stylesheet" href="assets/style.css">
     </head>
     <body>
-    <center>
-        <h1 style="margin-bottom: 60px"> DumphpDB </h1>
-    </center>
+        <div id="wrapper">
+            <a href="https://github.com/matheushf">
+                <img style="position: absolute; top: 0; left: 0; border: 0;" src="assets/forkme_left_green_007200.png" alt="Fork me on GitHub" data-canonical-src="">
+            </a>
+            <div id="header">
+                <center>
+                    <h1 style=""> DumphpDB </h1>
+                    <hr>
+                </center>
 
-    <center>
-        <div id="save">
+            </div>
 
-            <form action="dumphpdb.php" method="POST" name="">
-                <span style="margin-top: 50px"></span>
-                <p> Save your DB version. </p>
-                <br>
-                <label>Mysql User</label>
-                <input type="text" name="mysql_user">
-                <br>
-                <label>Password </label>
-                <input type="text" name="mysql_password">
-                <br>
-                <input type="submit" name="save" value="Save">
-            </form>
+            <div id="content">
+                <center>
+                    <div id="save">
+                        <span style="margin-top: 0px"></span>
+                        <p> Save your DB version. </p>
+                        <input type="submit" class="button" name="save" value="Save">
+                    </div>
+                </center>        
+
+                <center>
+                    <div id="update">
+                        <span style="margin-top: 0px"></span>
+                        <p> Update your DB Version. </p>
+                        <input type="submit" class="button" name="save" value="Update">
+                    </div>
+                </center>
+
+            </div>
+
+            <div id="footer">
+                <center>
+                    Matheus Victor  <a style="" href="github.com/matheushf"> github.com/matheushf </a>
+                </center>
+            </div>
+
+            <?php
+            // put your code here
+            ?>
         </div>
-    </center>        
-
-    <center>
-        <div id="update">
-            <form action="dumphpdb.php" method="POST">
-                <span style="margin-top: 50px"></span>
-                <p> Update your DB Version. </p>
-                <br>
-                <label>Mysql User</label>
-                <input type="text" name="mysql_user">
-                <br>
-                <label>Password </label>
-                <input type="text" name="mysql_password">
-                <br>
-                <input type="submit" name="save" value="Update">
-            </form>
-        </div>
-    </center>
-
-    <?php
-    // put your code here
-    ?>
-</body>
+    </body>
 </html>

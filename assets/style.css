@@ -1,0 +1,89 @@
+/* 
+    Created on : Apr 7, 2016, 3:52:28 PM
+    Author     : Matheus Victor <hffmatheus@gmail.com>
+*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: white;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#save {
+    float: left;
+    width: 50%;
+}
+
+#update {
+    float: right;
+    width: 50%;                
+}
+
+#update #save, input {
+    margin-top: 50px;
+    width: 150px;
+    height: 35px;
+}
+
+#header {
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+#content {
+    padding-bottom: 100px;
+}
+
+#footer {
+    padding: 5px 0px 5px 0px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: darkgreen;
+    width: 100%;
+    height: auto;
+    color: white;
+}
+
+.button {
+    background-color:#01ab39;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid #18ab29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    padding:8px 41px;
+    text-decoration:none;
+}
+.button:hover {
+    background-color:#5cbf2a;
+}
+.button:active {
+    position:relative;
+    top:1px;
+}
+
+hr {
+    margin-bottom: 60px; 
+    width: 80%
+}
+
+a {
+    margin-left: 20px;
+    color: white;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: gray;
+}

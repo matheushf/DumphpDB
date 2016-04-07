@@ -9,9 +9,7 @@ class DB {
     public function __construct() {
         $this->host = 'localhost';
         $this->user = $_POST['mysql_user'];
-        $this->password = $_POST['mysql_password'];
-        
-//        var_dump($this);
+        $this->password = $_POST['mysql_password'];        
     }
 
     function Connect() {
