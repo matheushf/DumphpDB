@@ -11,22 +11,6 @@ html, body {
     font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
 
-#save {
-    float: left;
-    width: 50%;
-}
-
-#update {
-    float: right;
-    width: 50%;                
-}
-
-#update #save, input {
-    margin-top: 50px;
-    width: 150px;
-    height: 35px;
-}
-
 #header {
 }
 
@@ -37,6 +21,23 @@ html, body {
 
 #content {
     padding-bottom: 100px;
+}
+
+#save {
+    
+}
+
+#backup {
+}
+
+#update {
+}
+
+#update, #backup, #save {
+    border-bottom: gray solid;
+    margin: 50px;
+    padding: 0px;
+    width: 30%;
 }
 
 #footer {
@@ -51,6 +52,10 @@ html, body {
 }
 
 .button {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 150px;
+    height: 25px;
     background-color:#01ab39;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
@@ -58,16 +63,17 @@ html, body {
     border:1px solid #18ab29;
     display:inline-block;
     cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
+    color: white;
+    /*font-family:Arial;*/
     font-size:15px;
-    font-weight:bold;
-    padding:8px 41px;
+    padding: 5px 0px 0px 0px;
     text-decoration:none;
 }
+
 .button:hover {
     background-color:#5cbf2a;
 }
+
 .button:active {
     position:relative;
     top:1px;
@@ -78,12 +84,12 @@ hr {
     width: 80%
 }
 
-a {
+#footer a {
     margin-left: 20px;
     color: white;
     text-decoration: underline;
 }
 
-a:hover {
+#footer a:hover {
     color: gray;
 }

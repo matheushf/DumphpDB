@@ -1,5 +1,6 @@
 {
-    "user": "",
+    "host": "localhost",
+    "user": "root",
     "pass": "",
     "database": "",
     "version": "0"

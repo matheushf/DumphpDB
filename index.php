@@ -35,17 +35,22 @@ require_once 'dumphpdb.php';
             <div id="content">
                 <center>
                     <div id="save">
-                        <span style="margin-top: 0px"></span>
-                        <p> Save your DB version. </p>
-                        <input type="submit" class="button" name="save" value="Save">
+                        <p> Save your current Database. </p>
+                        <a href='?action=save' class="button" name="save"> Save </a>
                     </div>
-                </center>        
+                </center>                
+
+                <center>
+                    <div id="backup">
+                        <p> Backup your Database version. </p>
+                        <a href='?action=backup' class="button" name="backup"> Backup </a>
+                    </div>
+                </center>
 
                 <center>
                     <div id="update">
-                        <span style="margin-top: 0px"></span>
-                        <p> Update your DB Version. </p>
-                        <input type="submit" class="button" name="save" value="Update">
+                        <p> Update your Working Database. </p>
+                        <a href='?action=update' class="button" name="save" > Update </a>
                     </div>
                 </center>
 
