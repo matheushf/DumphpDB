@@ -61,7 +61,7 @@ class DumphpDB extends DB {
         $config = json_encode($this->config);
         file_put_contents('conf.json', $config);
 
-//        UpdateVersionNumber($version);
+        UpdateVersionNumber($version);
     }
 
     function VersionDB() {
