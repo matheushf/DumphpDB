@@ -1,7 +1,1 @@
-{
-    "host": "localhost",
-    "user": "root",
-    "pass": "",
-    "database": "",
-    "version": "0"
-}
+{"host":"localhost","user":"root","pass":"root","database":"vivo_inventario","version":1.2}
