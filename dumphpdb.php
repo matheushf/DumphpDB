@@ -1,23 +1,11 @@
 <?php
 
-$dump = new DumphpDB();
-
-if(isset($_POST)) {
-    //identify action
-}
-
 class DB {
 
-    public $host, $user, $password, $con, $db_name;
+    public $config = array();
 
     public function __construct() {
-        $config = $this->ReadConfig();
-
-        $this->host = $config->host;
-        $this->user = $config->user;
-        $this->password = $config->pass;
-        $this->db_name = $config->database;
-
+        $this->config = $this->ReadConfig();
     }
 
     function Connect() {
@@ -34,7 +22,7 @@ class DB {
 
     function ReadConfig() {
         $config = file_get_contents('conf.json');
-        $config = json_decode($config);
+        $config = json_decode($config, true);
 
         return $config;
     }
@@ -45,8 +33,48 @@ class DumphpDB extends DB {
 
     function __construct() {
         parent::__construct();
-        
+
 //        var_dump($this);
+    }
+
+    function SaveVersionDB() {
+
+        // Check if the script is running under windows
+        if (preg_match('/linux/i', PHP_OS)) {
+            $path = 'mysqldump';
+        } else {
+            $path = 'c:\xampp\mysql\bin\mysqldump';
+        }
+
+        if ($this->config['pass'] != null) {
+            $pass = ' -p' . $this->config['pass'];
+        }
+
+        $this->config['version'] = $this->config['version'] + 0.1;
+        $name = $this->config['database'] . $this->config['version'] . '.sql';
+
+        var_dump($this->config);
+
+        exec($path . ' --add-drop-database --opt -u ' . $this->config['user'] . $pass . ' ' . $this->config['database'] . ' > db/saved/' . $name);
+
+        // Update the version in file
+        $config = json_encode($this->config);
+        file_put_contents('conf.json', $config);
+
+//        UpdateVersionNumber($version);
+    }
+
+    function VersionDB() {
+
+        if (filesize($_SERVER['DOCUMENT_ROOT'] . "/version.txt") != 0) {
+            $file = fopen($_SERVER['DOCUMENT_ROOT'] . '/version.txt', 'r');
+            $version = fread($file, filesize($_SERVER['DOCUMENT_ROOT'] . "/version.txt"));
+            fclose($file);
+        } else {
+            return 0;
+        }
+
+        return $version;
     }
 
     function UpdateDB() {
@@ -75,73 +103,6 @@ class DumphpDB extends DB {
         fclose($file);
 
         UpdateVersionNumber($version);
-    }
-
-    function SaveVersionDB() {
-        global $db;
-
-        $host = 'localhost';
-        $user = $_POST['mysql_user'];
-        $password = $_POST['mysql_password'];
-
-        $db->Connect($host, $banco_de_dados = null, $user, $password);
-
-        // Check if the script is running under windows
-        if (preg_match('/linux/i', PHP_OS)) {
-            $path = 'mysqldump';
-        } else {
-            $path = 'c:\xampp\mysql\bin\mysqldump';
-        }
-
-        if ($password != null) {
-            $password = ' -p ' . $password;
-        }
-
-        exec($path . ' --add-drop-database --opt -u ' . $user . $password . ' geleia_framework > geleia_framework.sql');
-
-        // Update the version in file
-        $file = fopen($_SERVER['DOCUMENT_ROOT'] . '/version.txt', 'r');
-        $version = fread($file, filesize($_SERVER['DOCUMENT_ROOT'] . "/version.txt"));
-        fclose($file);
-        $file = fopen($_SERVER['DOCUMENT_ROOT'] . '/version.txt', 'w');
-        $version += 0.01;
-        $version = str_replace(',', '.', $version);
-        fwrite($file, $version);
-        fclose($file);
-
-        UpdateVersionNumber($version);
-    }
-
-    function VersionDB() {
-
-        if (filesize($_SERVER['DOCUMENT_ROOT'] . "/version.txt") != 0) {
-            $file = fopen($_SERVER['DOCUMENT_ROOT'] . '/version.txt', 'r');
-            $version = fread($file, filesize($_SERVER['DOCUMENT_ROOT'] . "/version.txt"));
-            fclose($file);
-        } else {
-            return 0;
-        }
-
-        return $version;
-    }
-
-    function VersionDBLocal() {
-        global $db;
-
-        $resultado = $db->GetObject('SELECT * FROM geleia.versao WHERE id = 1');
-        if ($resultado->numero != null) {
-            return str_replace(',', '.', $resultado->numero);
-        } else {
-            return 0;
-        }
-    }
-
-    function UpdateVersionNumber($version) {
-        global $db;
-
-        // Update the local DataBase version 
-        $sql = 'UPDATE geleia.versao SET numero = ' . $version . ' WHERE id = 1';
-        $db->ExecSQL($sql);
     }
 
 }
