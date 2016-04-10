@@ -13,13 +13,14 @@ html, body {
 }
 
 #header {
-    width: 100%;
-    /*background-color: black;*/
 }
 
-#header a {
-    /*background-color: black;*/
-    position: absolute; top: 0; left: 0; border: 0;
+#git {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    border: 0;
+
 }
 
 #wrapper {

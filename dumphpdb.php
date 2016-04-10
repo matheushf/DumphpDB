@@ -26,12 +26,12 @@ class DumphpDB extends DB {
     function __construct() {
         parent::__construct();
     }
-    
+
     function GetVersion() {
         return $this->config['version'];
     }
 
-    function SaveVersionDB($Option) {
+    function SaveDB($Option) {
 
         if ($Option == 'data_structure') {
             $Option = "--add-drop-database=true --opt";
@@ -57,11 +57,11 @@ class DumphpDB extends DB {
 
         exec($path . ' -u ' . $this->config['user'] . $this->pass . ' -e "DROP database ' . $this->config['database'] . '"');
         exec($path . ' -u ' . $this->config['user'] . $this->pass . ' -e "CREATE database ' . $this->config['database'] . '"');
-        exec($path 
-                . ' -u ' 
-                . $this->config['user'] 
-                . $this->pass . ' ' 
-                . $this->config['database'] 
+        exec($path
+                . ' -u '
+                . $this->config['user']
+                . $this->pass . ' '
+                . $this->config['database']
                 . ' < db/' . $this->config['database'] . $this->config['version'] . '.sql');
     }
 

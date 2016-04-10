@@ -6,7 +6,7 @@ $action = (isset($_GET['action'])) ? $_GET['action'] : null;
 
 switch ($action) {
     case 'save': {
-            $dump->SaveVersionDB($_GET['option']);
+            $dump->SaveDB($_GET['option']);
 
             break;
         }
@@ -41,16 +41,18 @@ switch ($action) {
     </head>
     <body>
         <div id="wrapper">
-
-            <div id="header">
-                <a href="https://github.com/matheushf">
+            <a href="https://github.com/matheushf" id="git">
                     <img style="" src="assets/forkme_left_green_007200.png" alt="Fork me on GitHub" data-canonical-src="">
                 </a>
+            <div id="header">
+                
 
-                <center>
-                    <h1 style=""> DumphpDB </h1>
-                    <hr>
-                </center>
+                <div id="title">
+                    <center>
+                        <h1 style=""> DumphpDB </h1>
+                        <hr>
+                    </center>
+                </div>
 
             </div>
 
@@ -84,7 +86,7 @@ switch ($action) {
 
             <div id="footer">
                 <center>
-                    Matheus Victor  <a style="" href="github.com/matheushf"> github.com/matheushf </a>
+                    Matheus Victor  <a style="" href="http://www.github.com/matheushf"> github.com/matheushf </a>
                 </center>
             </div>
 
