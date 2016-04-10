@@ -1,23 +1,43 @@
-<!DOCTYPE html>
-<!--
-DumphpDB is a easy way to save your working database. 
-
-If you have are working on a new project, it means that, like always, your database is going to have a lot of versions, with the progress we make, we always find something we want to change. 
-
-So if you work in more than one place, or in a team, you probably use a git to save your work, and then pull the changes. 
-This plugin allows you to save your current database, and then upload it along with your current project's directory's, and then after pulling your commit, you just update the database, it is just two clicks in a single page, and it is it!
-
-I hope you enjoy!
--->
 <?php
-require_once 'action.php';
-?>
+require_once './dumphpdb.php';
+$dump = new DumphpDB();
 
+$action = (isset($_GET['action'])) ? $_GET['action'] : null;
+
+switch ($action) {
+    case 'save': {
+            $dump->SaveVersionDB($_GET['option']);
+
+            break;
+        }
+
+    case 'update': {
+            $dump->UpdateDB();
+
+            break;
+        }
+}
+?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <title> DumphpDB </title>
         <link rel="stylesheet" href="assets/style.css">
+        <script src="assets/jquery-1.11.3.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $("#save").click(function (event) {
+                    event.preventDefault();
+                    var opt = $("input:checked").val();
+                    var a = $(this).attr("href");
+
+                    window.location = a + '&option=' + opt;
+
+                })
+            })
+
+        </script>
     </head>
     <body>
         <div id="wrapper">
@@ -36,17 +56,28 @@ require_once 'action.php';
 
             <div id="content">
                 <center>
-                    <div id="save">
+                    <div id="opt">
+                        <label>Structure and Data </label>
+                        <input type="radio" name="option" value="data_structure" checked="">
+                        <br>
+                        <label> Data: </label>
+                        <input type="radio" name="option" value="data">
+                    </div>
+
+                    <div id="col-save">
                         <p> Save/Backup your current Database. </p>
-                        <a href='?action=save' class="button" name="save"> Save </a>
+                        <a href='?action=save' class="button" id="save"> Save </a>
                     </div>
                 </center>                
 
                 <center>
-                    <div id="update">
+                    <div id="col-update">
                         <p> Update your Working Database. </p>
-                        <a href='?action=update' class="button" name="save" > Update </a>
+                        <a href='?action=update' class="button" id="update" > Update </a>
                     </div>
+
+                    <p style="margin-top: -30px"><b>Database </b><?= $dump->config['database'] ?></p>
+                    <p><b>Version: </b><?= $dump->config['version'] ?></p>
                 </center>
 
             </div>

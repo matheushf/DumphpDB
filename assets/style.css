@@ -31,17 +31,7 @@ html, body {
     padding-bottom: 100px;
 }
 
-#save {
-    
-}
-
-#backup {
-}
-
-#update {
-}
-
-#update, #backup, #save {
+#col-update, #col-save {
     border-bottom: gray solid;
     margin: 50px;
     padding: 0px;
@@ -100,4 +90,17 @@ hr {
 
 #footer a:hover {
     color: gray;
+}
+
+#opt {
+    width: 200px;
+    height: 40px;
+}
+
+#opt label {
+    float: left;
+}
+
+#opt input {
+    float: right;
 }
