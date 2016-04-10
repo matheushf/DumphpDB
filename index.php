@@ -10,7 +10,7 @@ This plugin allows you to save your current database, and then upload it along w
 I hope you enjoy!
 -->
 <?php
-require_once 'action.php';
+require_once 'dumphpdb.php';
 ?>
 
 <html>
@@ -21,12 +21,10 @@ require_once 'action.php';
     </head>
     <body>
         <div id="wrapper">
-
+            <a href="https://github.com/matheushf">
+                <img style="position: absolute; top: 0; left: 0; border: 0;" src="assets/forkme_left_green_007200.png" alt="Fork me on GitHub" data-canonical-src="">
+            </a>
             <div id="header">
-                <a href="https://github.com/matheushf">
-                    <img style="" src="assets/forkme_left_green_007200.png" alt="Fork me on GitHub" data-canonical-src="">
-                </a>
-
                 <center>
                     <h1 style=""> DumphpDB </h1>
                     <hr>
@@ -37,10 +35,17 @@ require_once 'action.php';
             <div id="content">
                 <center>
                     <div id="save">
-                        <p> Save/Backup your current Database. </p>
+                        <p> Save your current Database. </p>
                         <a href='?action=save' class="button" name="save"> Save </a>
                     </div>
                 </center>                
+
+                <center>
+                    <div id="backup">
+                        <p> Backup your Database version. </p>
+                        <a href='?action=backup' class="button" name="backup"> Backup </a>
+                    </div>
+                </center>
 
                 <center>
                     <div id="update">
