@@ -62,7 +62,7 @@ switch ($action) {
                         <label>Structure and Data </label>
                         <input type="radio" name="option" value="data_structure" checked="">
                         <br>
-                        <label> Data: </label>
+                        <label> Structure: </label>
                         <input type="radio" name="option" value="data">
                     </div>
 
