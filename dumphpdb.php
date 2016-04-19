@@ -70,7 +70,7 @@ class DumphpDB extends DB {
         if (preg_match('/linux/i', PHP_OS)) {
             $path = $program . ' ';
         } else {
-            $path = "c:\xampp\mysql\bin\\" . $program;
+            $path = 'C:\\' . $_SERVER['MYSQL_HOME'] . '\\' . $program . ' ';
         }
 
         return $path;
