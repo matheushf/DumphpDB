@@ -6,13 +6,13 @@ $action = (isset($_GET['action'])) ? $_GET['action'] : null;
 
 switch ($action) {
     case 'save': {
-            $dump->SaveDB($_GET['option']);
+            $msg = $dump->SaveDB($_GET['option']);
 
             break;
         }
 
     case 'update': {
-            $dump->UpdateDB();
+            $msg = $dump->UpdateDB();
 
             break;
         }
@@ -21,8 +21,9 @@ switch ($action) {
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
         <title> DumphpDB </title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="assets/style.css">
         <script src="assets/jquery-1.11.3.min.js"></script>
         <script>
@@ -34,18 +35,18 @@ switch ($action) {
 
                     window.location = a + '&option=' + opt;
 
-                })
-            })
+                });
+            });
 
         </script>
     </head>
     <body>
         <div id="wrapper">
-            <a href="https://github.com/matheushf" id="git">
-                    <img style="" src="assets/forkme_left_green_007200.png" alt="Fork me on GitHub" data-canonical-src="">
-                </a>
+            <a href="https://github.com/matheushf/dumphpdb" target="_blank" id="git">
+                <img style="" src="assets/forkme_left_green_007200.png" alt="Fork me on GitHub" data-canonical-src="">
+            </a>
             <div id="header">
-                
+
 
                 <div id="title">
                     <center>
@@ -55,6 +56,14 @@ switch ($action) {
                 </div>
 
             </div>
+
+            <?php if (isset($msg) && $msg !== true) { ?>
+                <div id="msg" class="<?= $msg['type'] ?>">
+                    <center>
+                        <?= $msg['text'] ?>
+                    </center>
+                </div>
+            <?php } ?>
 
             <div id="content">
                 <center>
@@ -78,7 +87,7 @@ switch ($action) {
                         <a href='?action=update' class="button" id="update" > Update </a>
                     </div>
 
-                    <p style="margin-top: -30px"><b>Database </b><?= $dump->config['database'] ?></p>
+                    <p style="margin-top: -30px"><b>Database: </b><?= $dump->config['database'] ?></p>
                     <p><b>Version: </b><?= $dump->config['version'] ?></p>
                 </center>
 

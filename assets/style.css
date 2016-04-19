@@ -3,6 +3,14 @@
     Author     : Matheus Victor <hffmatheus@gmail.com>
 */
 
+@font-face {
+    font-family: 'Gentium Basic';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Gentium Basic'), local('GentiumBasic'), url(GentiumBasic.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+
 html, body {
     top: 0;
     margin: 0;
@@ -10,6 +18,11 @@ html, body {
     height: 100%;
     background-color: white;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+#title {
+    font-family: 'Gentium Basic', serif;
+    font-size: 22px;
 }
 
 #header {
@@ -29,11 +42,12 @@ html, body {
 }
 
 #content {
-    padding-bottom: 100px;
+    margin-top: 30px;
+    padding-bottom: 50px;
 }
 
 #col-update, #col-save {
-    border-bottom: gray solid;
+    border-bottom: green 0.5px double;
     margin: 50px;
     padding: 0px;
     width: 30%;
@@ -79,8 +93,9 @@ html, body {
 }
 
 hr {
-    margin-bottom: 60px; 
-    width: 80%
+    margin-bottom: 20px;
+    border: green 0.1px solid;
+    width: 70%
 }
 
 #footer a {
@@ -104,4 +119,22 @@ hr {
 
 #opt input {
     float: right;
+}
+
+#msg {
+    margin-bottom: 10px;
+    /*font-weight: bold;*/
+    /*width: 200px;*/
+    margin-right: 20%;
+    margin-left: 20%;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+#msg.error {
+    background-color: #ff9999;
+}
+
+#msg.success {
+    background-color: #47d147;
 }

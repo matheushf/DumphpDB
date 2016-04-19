@@ -1,6 +1,6 @@
 <?php
 
-class DB {
+class Conf {
 
     public $config = array(), $pass = null;
 
@@ -21,7 +21,7 @@ class DB {
 
 }
 
-class DumphpDB extends DB {
+class DumphpDB extends Conf {
 
     function __construct() {
         parent::__construct();
@@ -32,6 +32,7 @@ class DumphpDB extends DB {
     }
 
     function SaveDB($Option) {
+        $response = array();
 
         if ($Option == 'data_structure') {
             $Option = "--add-drop-database=true --opt";
@@ -41,19 +42,44 @@ class DumphpDB extends DB {
 
         $path = $this->GetPath('mysqldump');
 
-        $this->config['version'] = $this->config['version'] + 0.1;
-        $name = $this->config['database'] . $this->config['version'] . '.sql';
+        $file = "db/" . $this->config['database'] . ($this->config['version'] + 0.1) . ".sql";
+        $file = str_replace(',', '.', $file);
 
-        exec($path . $Option . ' -u ' . $this->config['user'] . $this->pass . ' ' . $this->config['database'] . ' > db/' . $name);
+
+        exec($path . $Option . ' -u ' . $this->config['user'] . $this->pass . ' ' . $this->config['database'] . ' > ' . $file);
+
+        if (!file_exists($file) || filesize($file) <= 1000) {
+            $com = $path . $Option . ' -u ' . $this->config['user'] . $this->pass . ' ' . $this->config['database'] . ' > ' . $file;
+            $response['type'] = 'error';
+            $response['text'] = "Folder db/ not found. Please, create a folder called 'db' inside DumphpDB directory.";
+
+            return $response;
+        }
 
         // Update the version in file
+        $this->config['version'] += + 0.1;
         $config = json_encode($this->config);
         file_put_contents('conf.json', $config);
+
+        $response['type'] = 'success';
+        $response['text'] = 'Database saved successfully.';
+
+        return $response;
     }
 
     function UpdateDB() {
+        $response = array();
 
         $path = $this->GetPath('mysql');
+        $file = 'db/' . $this->config['database'] . $this->config['version'] . '.sql';
+        $file = str_replace(',', '.', $file);
+
+        if (!file_exists($file) || filesize($file) <= 1000) {
+            $response['type'] = 'error';
+            $response['text'] = 'Database file not found inside DumphpDB directory.';
+
+            return $response;
+        }
 
         exec($path . ' -u ' . $this->config['user'] . $this->pass . ' -e "DROP database ' . $this->config['database'] . '"');
         exec($path . ' -u ' . $this->config['user'] . $this->pass . ' -e "CREATE database ' . $this->config['database'] . '"');
@@ -62,7 +88,12 @@ class DumphpDB extends DB {
                 . $this->config['user']
                 . $this->pass . ' '
                 . $this->config['database']
-                . ' < db/' . $this->config['database'] . $this->config['version'] . '.sql');
+                . ' < ' . $file);
+
+        $response['type'] = 'success';
+        $response['text'] = 'Database updated successfully.';
+
+        return $response;
     }
 
     function GetPath($program) {
