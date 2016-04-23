@@ -1,6 +1,6 @@
 #DumphpDB
 
-**DumphpDB is a easy way to save your working database.**
+**DumphpDB is a easy way to save and import your working database, with two clicks in a single page**
 
 If you have are working on a new project, it means that, like always, your database is going to have a lot of versions, with the progress we make, we always find something we want to change. 
 
@@ -9,9 +9,16 @@ This plugin allows you to save your current database, and then upload it along w
 
 ##Usage
 
-Download/Clone this repository inside somewhere in your project's folder
+Inside somewhere in your project,
+```
+git clone https://github.com/matheushf/DumphpDB.git
+cd DumphpDB
+```
 
-Open the file conf.json, set your credentials and the name of your Database
+In conf.json, set the credentials of your mysql, and the database you want to export\import
+```
+{"host":"localhost","user":"root","pass":"root","database":"","version":1}
+```
 
-In your browser, go to the index of DumphpDB, and enjoy.
+In your browser, go to the index of DumphpDB, and enjoy!
 
