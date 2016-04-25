@@ -22,3 +22,6 @@ In conf.json, set the credentials of your mysql, and the database you want to ex
 
 In your browser, go to the index of DumphpDB, and enjoy!
 
+***@todo***
+- Create a different way of saving the DB version
+- Alert if the Database is connected, or if it is not
