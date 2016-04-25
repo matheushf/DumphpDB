@@ -67,13 +67,11 @@ html, body {
 .button {
     margin-top: 30px;
     margin-bottom: 20px;
-    width: 150px;
+    width: 130px;
     height: 25px;
-    background-color:#01ab39;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
-    border:1px solid #18ab29;
     display:inline-block;
     cursor:pointer;
     color: white;
@@ -81,6 +79,16 @@ html, body {
     font-size:15px;
     padding: 5px 0px 0px 0px;
     text-decoration:none;
+}
+
+.button_cancel {
+    border:1px solid tomato;
+    background-color: tomato;
+}
+
+.button_save {
+    border:1px solid #18ab29;
+    background-color:#01ab39;
 }
 
 .button:hover {

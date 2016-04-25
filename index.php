@@ -77,14 +77,14 @@ switch ($action) {
 
                     <div id="col-save">
                         <p> Save/Backup your current Database. </p>
-                        <a href='?action=save' class="button" id="save"> Save </a>
+                        <a href='?action=save' class="button button_save" id="save"> Save </a>
                     </div>
                 </center>                
 
                 <center>
                     <div id="col-update">
                         <p> Update your Working Database. </p>
-                        <a href='?action=update' class="button" id="update" > Update </a>
+                        <a href='?action=update' class="button button_cancel" id="update" > Update </a>
                     </div>
 
                     <p style="margin-top: -30px"><b>Database: </b><?= $dump->config['database'] ?></p>
