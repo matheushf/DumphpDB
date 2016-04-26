@@ -73,17 +73,16 @@ html, body {
     -webkit-border-radius:5px;
     border-radius:5px;
     display:inline-block;
-    cursor:pointer;
     color: white;
-    /*font-family:Arial;*/
+    font-family:Arial;
     font-size:15px;
     padding: 5px 0px 0px 0px;
     text-decoration:none;
 }
 
 .button_cancel {
-    border:1px solid tomato;
-    background-color: tomato;
+    border:1px solid #18ab29;
+    background-color:#01ab39;
 }
 
 .button_save {

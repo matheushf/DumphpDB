@@ -1,6 +1,11 @@
 <?php
 require_once './dumphpdb.php';
 $dump = new DumphpDB();
+$new = false;
+
+if ($dump->config['cred'] == 'new') {
+    $new = true;
+}
 
 $action = (isset($_GET['action'])) ? $_GET['action'] : null;
 
@@ -43,7 +48,7 @@ switch ($action) {
     <body>
         <div id="wrapper">
             <a href="https://github.com/matheushf/dumphpdb" target="_blank" id="git">
-                <img style="" src="assets/forkme_left_green_007200.png" alt="Fork me on GitHub" data-canonical-src="">
+                <!--<img style="" src="assets/forkme_left_green_007200.png" alt="Fork me on GitHub" data-canonical-src="">-->
             </a>
             <div id="header">
 
@@ -66,32 +71,43 @@ switch ($action) {
             <?php } ?>
 
             <div id="content">
+
+                <?php if ($new) { ?>
+                
                 <center>
-                    <div id="opt">
-                        <label>Structure and Data </label>
-                        <input type="radio" name="option" value="data_structure" checked="">
-                        <br>
-                        <label> Structure: </label>
-                        <input type="radio" name="option" value="data">
-                    </div>
-
-                    <div id="col-save">
-                        <p> Save/Backup your current Database. </p>
-                        <a href='?action=save' class="button button_save" id="save"> Save </a>
-                    </div>
-                </center>                
-
-                <center>
-                    <div id="col-update">
-                        <p> Update your Working Database. </p>
-                        <a href='?action=update' class="button button_cancel" id="update" > Update </a>
-                    </div>
-
-                    <p style="margin-top: -30px"><b>Database: </b><?= $dump->config['database'] ?></p>
-                    <p><b>Version: </b><?= $dump->config['version'] ?></p>
+                    
+                    
                 </center>
+                
+                <?php } else { ?>
+                    <center>
+                        <div id="opt">
+                            <label>Structure and Data </label>
+                            <input type="radio" name="option" value="data_structure" checked="">
+                            <br>
+                            <label> Structure: </label>
+                            <input type="radio" name="option" value="data">
+                        </div>
 
-            </div>
+                        <div id="col-save">
+                            <p> Save/Backup your current Database. </p>
+                            <a href='?action=save' class="button button_save" id="save"> Save </a>
+                        </div>
+                    </center>                
+
+                    <center>
+                        <div id="col-update">
+                            <p> Update your Working Database. </p>
+                            <a href='?action=update' class="button button_cancel" id="update" > Update </a>
+                        </div>
+
+                        <p style="margin-top: -30px"><b>Database: </b><?= $dump->config['cred']['database'] ?></p>
+                        <p><b>Version: </b><?= $dump->config['vers']['version'] ?></p>
+                    </center>
+
+                </div>
+
+            <?php } ?>
 
             <div id="footer">
                 <center>

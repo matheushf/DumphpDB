@@ -7,14 +7,27 @@ class Conf {
     public function __construct() {
         $this->config = $this->ReadConfig();
 
-        if ($this->config['pass'] != null) {
-            $this->pass = ' -p' . $this->config['pass'];
+        if ($this->config['cred'] == 'new') {
+            return 'new';
+        } else {
+            
+            if ($this->config['cred']['pass'] != null) {
+                $this->pass = ' -p' . $this->config['cred']['pass'];
+            }
         }
     }
 
     function ReadConfig() {
-        $config = file_get_contents('conf.json');
-        $config = json_decode($config, true);
+
+        if (file_exists('conf.json')) {
+            $config['cred'] = file_get_contents('conf.json');
+            $config['cred'] = json_decode($config['cred'], true);
+        } else {
+            $config['cred'] = 'new';
+        }
+
+        $config['vers'] = file_get_contents('version.json');
+        $config['vers'] = json_decode($config['vers'], true);
 
         return $config;
     }
@@ -28,7 +41,7 @@ class DumphpDB extends Conf {
     }
 
     function GetVersion() {
-        return $this->config['version'];
+        return $this->config['vers']['version'];
     }
 
     function SaveDB($Option) {
@@ -42,14 +55,14 @@ class DumphpDB extends Conf {
 
         $path = $this->GetPath('mysqldump');
 
-        $file = "db/" . $this->config['database'] . ($this->config['version'] + 0.1) . ".sql";
+        $file = "db/" . $this->config['cred']['database'] . ($this->config['vers']['version'] + 0.1) . ".sql";
         $file = str_replace(',', '.', $file);
 
 
-        exec($path . $Option . ' -u ' . $this->config['user'] . $this->pass . ' ' . $this->config['database'] . ' > ' . $file);
+        exec($path . $Option . ' -u ' . $this->config['cred']['user'] . $this->pass . ' ' . $this->config['cred']['database'] . ' > ' . $file);
 
         if (!file_exists($file) || filesize($file) <= 1000) {
-            $com = $path . $Option . ' -u ' . $this->config['user'] . $this->pass . ' ' . $this->config['database'] . ' > ' . $file;
+            $com = $path . $Option . ' -u ' . $this->config['cred']['user'] . $this->pass . ' ' . $this->config['cred']['database'] . ' > ' . $file;
             $response['type'] = 'error';
             $response['text'] = "Folder db/ not found. Please, create a folder called 'db' inside DumphpDB directory.";
 
@@ -57,9 +70,9 @@ class DumphpDB extends Conf {
         }
 
         // Update the version in file
-        $this->config['version'] += + 0.1;
-        $config = json_encode($this->config);
-        file_put_contents('conf.json', $config);
+        $this->config['vers']['version'] += + 0.1;
+        $config = json_encode($this->config['vers']);
+        file_put_contents('version.json', $config);
 
         $response['type'] = 'success';
         $response['text'] = 'Database saved successfully.';
@@ -71,7 +84,7 @@ class DumphpDB extends Conf {
         $response = array();
 
         $path = $this->GetPath('mysql');
-        $file = 'db/' . $this->config['database'] . $this->config['version'] . '.sql';
+        $file = 'db/' . $this->config['cred']['database'] . $this->config['vers']['version'] . '.sql';
         $file = str_replace(',', '.', $file);
 
         if (!file_exists($file) || filesize($file) <= 1000) {
@@ -81,13 +94,13 @@ class DumphpDB extends Conf {
             return $response;
         }
 
-        exec($path . ' -u ' . $this->config['user'] . $this->pass . ' -e "DROP database ' . $this->config['database'] . '"');
-        exec($path . ' -u ' . $this->config['user'] . $this->pass . ' -e "CREATE database ' . $this->config['database'] . '"');
+        exec($path . ' -u ' . $this->config['cred']['user'] . $this->pass . ' -e "DROP database ' . $this->config['cred']['database'] . '"');
+        exec($path . ' -u ' . $this->config['cred']['user'] . $this->pass . ' -e "CREATE database ' . $this->config['cred']['database'] . '"');
         exec($path
                 . ' -u '
-                . $this->config['user']
+                . $this->config['cred']['user']
                 . $this->pass . ' '
-                . $this->config['database']
+                . $this->config['cred']['database']
                 . ' < ' . $file);
 
         $response['type'] = 'success';
