@@ -12,20 +12,27 @@
 }
 
 html, body {
-    top: 0;
-    margin: 0;
-    padding: 0;
+    top: 0px;
+    margin: 0px;
+    padding: 0px;
     height: 100%;
     background-color: white;
     font-family: "Trebuchet MS", Helvetica, sans-serif;
+
 }
 
-#title {
-    font-family: 'Gentium Basic', serif;
-    font-size: 22px;
+h1 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    /*font-size: 100%;*/
+    vertical-align: baseline;
+    background: transparent;
 }
 
 #header {
+    padding-top: 30px;
 }
 
 #git {
@@ -33,17 +40,17 @@ html, body {
     top: 0; 
     left: 0; 
     border: 0;
-
 }
 
 #wrapper {
     min-height: 100%;
     position: relative;
+    /*padding: 20px;*/
 }
 
 #content {
-    margin-top: 30px;
-    padding-bottom: 50px;
+    /*margin-top: 30px;*/
+    /*padding-bottom: 50px;*/
 }
 
 #col-update, #col-save {
@@ -68,21 +75,21 @@ html, body {
     margin-top: 30px;
     margin-bottom: 20px;
     width: 130px;
-    height: 25px;
-    -moz-border-radius:5px;
-    -webkit-border-radius:5px;
-    border-radius:5px;
-    display:inline-block;
+    height: auto;
+    -moz-border-radius: 5px;
+    -webkit-border-radius :5px;
+    border-radius: 5px;
+    display: inline-block;
     color: white;
-    font-family:Arial;
-    font-size:15px;
-    padding: 5px 0px 0px 0px;
+    font-family: Arial;
+    font-size: 15px;
+    padding: 6px 0px 6px 0px;
     text-decoration:none;
 }
 
 .button_cancel {
-    border:1px solid #18ab29;
-    background-color:#01ab39;
+    border: 1px solid #18ab29;
+    background-color: #01ab39;
 }
 
 .button_save {
@@ -116,8 +123,8 @@ hr {
 }
 
 #opt {
-    width: 200px;
-    height: 40px;
+    width: 500px;
+    height: auto;
 }
 
 #opt label {
@@ -128,9 +135,34 @@ hr {
     float: right;
 }
 
+.input-group {
+    width: 400px;
+    height: 30px;
+}
+
+@media(max-width: 768px ) {
+    .input-group {
+        width: 300px;
+        height: 30px;
+    }
+}
+
+.input-group label {
+    float: left;
+    font-weight: bold;
+}
+
+.input-group input {
+    float: right;
+    width: 60%;
+    border-radius: 4px;
+}
+
+.input-control {
+}
+
 #msg {
     margin-bottom: 10px;
-    /*font-weight: bold;*/
     /*width: 200px;*/
     margin-right: 20%;
     margin-left: 20%;

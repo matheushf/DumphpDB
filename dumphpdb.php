@@ -2,19 +2,10 @@
 
 class Conf {
 
-    public $config = array(), $pass = null;
+    public $config = array(), $pass = null, $response = array();
 
     public function __construct() {
         $this->config = $this->ReadConfig();
-
-        if ($this->config['cred'] == 'new') {
-            return 'new';
-        } else {
-            
-            if ($this->config['cred']['pass'] != null) {
-                $this->pass = ' -p' . $this->config['cred']['pass'];
-            }
-        }
     }
 
     function ReadConfig() {
@@ -32,12 +23,53 @@ class Conf {
         return $config;
     }
 
+    function SaveCredentials() {
+        $conf = json_encode($_POST);
+
+        if (file_put_contents('conf.json', $conf)) {
+            $response['type'] = 'success';
+            $response['text'] = 'Credentials saved successfully.';
+        } else {
+            $response['type'] = 'error';
+            $response['text'] = "Couldn't create file.";
+        }
+
+        return $response;
+    }
+
+    function TestConnection() {
+        global $pdo;
+
+        try {
+            $pdo = new PDO('mysql:host=localhost;dbname=' . $this->config['cred']['database'], $this->config['cred']['user'], $this->config['pass'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8'));
+            
+        } catch (PDOException $ex) {
+            error_log($ex->getMessage());
+
+            $this->config['cred']['error'] = true;
+            $this->SetMessage('error', $ex->getMessage());
+        }
+    }
+    
+    function SetMessage($Type, $Message) {
+        $this->response['type'] = $Type;
+        $this->response['text'] = $Message;
+    }
+
 }
 
 class DumphpDB extends Conf {
 
     function __construct() {
         parent::__construct();
+
+        if ($this->config['cred']['pass'] != null) {
+            $this->pass = ' -p' . $this->config['cred']['pass'];
+        }
+        
+        $this->TestConnection();
+        
+        
     }
 
     function GetVersion() {
