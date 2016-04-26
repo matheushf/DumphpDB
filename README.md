@@ -7,20 +7,20 @@ If you have are working on a new project, it means that, like always, your datab
 So if you work in more than one place, or in a team, you probably use a git to save your work, and then pull the changes. 
 This plugin allows you to save your current database, and then upload it along with your current project's directory's, and then after pulling your commit, you just update the database, with just two clicks in a single page, and this is it!
 
-##Usage
+##Instalation
 
 Inside somewhere in your project,
 ```
 git clone https://github.com/matheushf/DumphpDB.git
 cd DumphpDB
 ```
+Or Zip Download it.
 
-In conf.json, set the credentials of your mysql, and the database you want to export\import
-```
-{"host":"localhost","user":"root","pass":"root","database":"","version":1}
-```
+##Usage
 
-In your browser, go to the index of DumphpDB, and enjoy!
+In your browser, go to the index of DumphpDB, if it is the first time you are using DumphpDB, you will be asked for the credentials to access mysql, and the database you want to use.
+
+After you submit, you will be able to use it. Hope you enjoy! 
 
 ***@todo***
 - Give option to download the database in save action

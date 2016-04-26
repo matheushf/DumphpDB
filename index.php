@@ -68,12 +68,12 @@ switch ($action) {
     <body>
         <div id="wrapper">
             <a href="https://github.com/matheushf/dumphpdb" target="_blank" id="git">
-<!--                <img style="" src="assets/forkme_left_green_007200.png" alt="Fork me on GitHub" data-canonical-src="">-->
+                <img style="" src="assets/forkme_left_green_007200.png" alt="Fork me on GitHub" data-canonical-src="">
             </a>
             <div id="header">
                 <center>
-                    <h1 style="margin-top:"> DumphpDB </h1>
-                    <hr>
+                    <h1> DumphpDB </h1>
+                    <hr style="margin-bottom: 30px">
                 </center>
             </div>
 
@@ -113,13 +113,10 @@ switch ($action) {
 
                 <?php } else { ?>
                     <center>
-                        <div id="opt">
                             <label>Structure and Data </label>
-                            <input type="radio" name="option" value="data_structure" checked="">
-                            <br>
+                            <input type="radio" name="option" value="data_structure" checked="" style="margin-right: 20px">
                             <label> Structure: </label>
                             <input type="radio" name="option" value="data">
-                        </div>
 
                         <div id="col-save">
                             <p> Save/Backup your current Database. </p>

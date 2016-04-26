@@ -122,19 +122,6 @@ hr {
     color: gray;
 }
 
-#opt {
-    width: 500px;
-    height: auto;
-}
-
-#opt label {
-    float: left;
-}
-
-#opt input {
-    float: right;
-}
-
 .input-group {
     width: 400px;
     height: 30px;
@@ -152,9 +139,8 @@ hr {
     font-weight: bold;
 }
 
-.input-group input {
+.input-group input[type="text"] {
     float: right;
-    width: 60%;
     border-radius: 4px;
 }
 
