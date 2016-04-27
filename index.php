@@ -142,7 +142,7 @@ switch ($action) {
 
             <div id="footer">
                 <center>
-                    Matheus Victor  <a href="http://www.github.com/matheushf"> github.com/matheushf </a>
+                    matheushf - 2016 <a href="http://www.github.com/matheushf"> github.com/matheushf </a>
                 </center>
             </div>
 
