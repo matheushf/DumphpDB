@@ -62,13 +62,14 @@ class DumphpDB extends Conf {
 
     function __construct() {
         parent::__construct();
-
-        if ($this->config['cred']['pass'] != null) {
+        
+        if ($this->config['cred'] == 'new') {
+            return;
+        } else if ($this->config['cred']['pass'] != null) {
             $this->pass = ' -p' . $this->config['cred']['pass'];
         }
         
         $this->TestConnection();
-        
         
     }
 
