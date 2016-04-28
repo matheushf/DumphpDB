@@ -53,16 +53,12 @@ switch ($action) {
         <script src="assets/jquery-1.11.3.min.js"></script>
         <script>
             $(document).ready(function () {
-                $("#save").click(function (event) {
-                    event.preventDefault();
+                $("#save").click(function () {
                     var opt = $("input:checked").val();
                     var a = $(this).attr("href");
-
-                    window.location = a + '&option=' + opt;
-
+                    $(this).attr('href', a + '&option=' + opt);
                 });
             });
-
         </script>
     </head>
     <body>
@@ -113,14 +109,20 @@ switch ($action) {
 
                 <?php } else { ?>
                     <center>
-                            <label>Structure and Data </label>
-                            <input type="radio" name="option" value="data_structure" checked="" style="margin-right: 20px">
-                            <label> Structure: </label>
-                            <input type="radio" name="option" value="data">
+                        <label>Structure and Data </label>
+                        <input type="radio" name="option" value="data_structure" checked="" style="margin-right: 20px">
+                        <label> Structure: </label>
+                        <input type="radio" name="option" value="data">
 
                         <div id="col-save">
-                            <p> Save/Backup your current Database. </p>
+                            <p> Save/Backup your current Database. </p><br>
+                            <label> 
+                                <input type="checkbox">
+                                Download 
+                            </label>
+                            <br> <br>
                             <a href='?action=save' class="button button_save" id="save"> Save </a>
+                            <a id="download" download=""></a>
                         </div>
                     </center>                
 
@@ -130,10 +132,11 @@ switch ($action) {
                             <a href='?action=update' class="button button_cancel" id="update" > Update </a>
                         </div>
 
-                        <p style="margin-top: -30px"><b>Database: </b><?= $dump->config['cred']['database'] ?></p>
+                        <p style="margin-top: -30px;"><b>Database: </b> <?= $dump->config['cred']['database'] ?> </p>
                         <p><b>Version: </b><?= $dump->config['vers']['version'] ?></p>
-
-                        <a href="?action=change_db">Change Database..</a>
+                        <p><b>Type: </b> <?= $dump->config['vers']['type'] ?> </p>
+                        <p><a href="?action=change_db">Change Database..</a></p>
+                        <br>
                     </center>
 
                 <?php } ?>
