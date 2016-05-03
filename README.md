@@ -16,6 +16,9 @@ cd DumphpDB
 ```
 Or Zip Download it.
 
+##How it Works
+
+
 ##Usage
 
 In your browser, go to the index of DumphpDB, if it is the first time you are using DumphpDB, you will be asked for the credentials to access mysql, and the database you want to use.
