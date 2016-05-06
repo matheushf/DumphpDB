@@ -16,14 +16,23 @@ cd DumphpDB
 ```
 Or Zip Download it.
 
-##How it Works
-
-
 ##Usage
 
 In your browser, go to the index of DumphpDB, if it is the first time you are using DumphpDB, you will be asked for the credentials to access mysql, and the database you want to use.
 
 After you submit, you will be able to use it. Hope you enjoy! 
+
+##How it Works
+
+If you work with Git, after you make the first "Save" in DumphpDB, go to your git, make commit/push, in the other computer, make pull, your database will come along with all updated files (as usual), now go to DumphpDB directory, click "Update", now you will see that both databases will be the same.
+
+If you are using it in a remote server (ftp, sftp etc), install DumphpDB in all hosts you will use, and after Saving your database, the only files you need to copy is the "db/" folder, and the "version.json" file, replace them in the remote host, go to DumphpDB index in your browser, now you cand update.
+
+###Any questions
+
+Open an issue, or send to my email
+
+hffmatheus@gmail.com
 
 ***@todo***
 - Give option to download the database in save action
