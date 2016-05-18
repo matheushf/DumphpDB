@@ -30,7 +30,7 @@ If you are using it in a remote server (ftp, sftp etc), install DumphpDB in all 
 
 ###Any questions
 
-Open an issue, or send to my email
+Open an issue, or send me an email
 
 hffmatheus@gmail.com
 
