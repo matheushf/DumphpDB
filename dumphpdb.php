@@ -41,7 +41,8 @@ class Conf {
         global $pdo;
 
         try {
-            $pdo = new PDO('mysql:host=localhost;dbname=' . $this->config['cred']['database'], $this->config['cred']['user'], $this->config['pass'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8'));
+            $pdo = new PDO('mysql:host=localhost;dbname=' . $this->config['cred']['database'], $this->config['cred']['user'], $this->config['cred']['pass'], array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8'));
+            
         } catch (PDOException $ex) {
             error_log($ex->getMessage());
 
@@ -49,7 +50,7 @@ class Conf {
             $this->SetMessage('error', $ex->getMessage());
         }
     }
-
+    
     function SetMessage($Type, $Message) {
         $this->response['type'] = $Type;
         $this->response['text'] = $Message;
@@ -60,15 +61,16 @@ class Conf {
 class DumphpDB extends Conf {
 
     function __construct() {
-        parent::__construct();
-
+        parent::__construct();			
+        
         if ($this->config['cred'] == 'new') {
             return;
         } else if ($this->config['cred']['pass'] != null) {
             $this->pass = ' -p' . $this->config['cred']['pass'];
         }
-
+        
         $this->TestConnection();
+        
     }
 
     function GetVersion() {
@@ -79,9 +81,9 @@ class DumphpDB extends Conf {
         $response = array();
 
         if ($Option == 'data_structure') {
-            $Options = "--add-drop-database=true --opt";
+            $Option = "--add-drop-database=true --opt";
         } else {
-            $Options = '-d --opt';
+            $Option = '-d --opt';
         }
 
         $path = $this->GetPath('mysqldump');
@@ -90,20 +92,18 @@ class DumphpDB extends Conf {
         $file = str_replace(',', '.', $file);
 
 
-        exec($path . $Options . ' -u ' . $this->config['cred']['user'] . $this->pass . ' ' . $this->config['cred']['database'] . ' > ' . $file);
+        exec($path . $Option . ' -u ' . $this->config['cred']['user'] . $this->pass . ' ' . $this->config['cred']['database'] . ' > ' . $file);
 
         if (!file_exists($file) || filesize($file) <= 1000) {
             $com = $path . $Option . ' -u ' . $this->config['cred']['user'] . $this->pass . ' ' . $this->config['cred']['database'] . ' > ' . $file;
             $response['type'] = 'error';
             $response['text'] = "Folder db/ not found. Please, create a folder called 'db' inside DumphpDB directory.";
-            $response['dir']  = $file;
 
             return $response;
         }
 
         // Update the version in file
         $this->config['vers']['version'] += + 0.1;
-        $this->config['vers']['type'] = $Option;
         $config = json_encode($this->config['vers']);
         file_put_contents('version.json', $config);
 
